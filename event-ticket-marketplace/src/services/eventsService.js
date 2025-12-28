@@ -13,9 +13,15 @@ export function getEvents() {
 export function getEventById(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const event = events.find((e) => e.id === Number(id));
-      if (event) resolve(event);
-      else reject(new Error("Event not found"));
-    }, 300); // simulate network delay
+      const event = events.find(
+        (e) => String(e.id) === String(id)
+      );
+
+      if (event) {
+        resolve(event);
+      } else {
+        reject(new Error("Event not found"));
+      }
+    }, 300);
   });
 }
