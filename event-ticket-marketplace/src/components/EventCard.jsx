@@ -1,20 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function EventCard({ id, title, location, date, price, image }) {
-  const navigate = useNavigate();
-
   const [isFavorite, setIsFavorite] = useState(() => {
+    if (!id) return false;
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     return favorites.includes(id);
   });
 
-  const goToDetails = () => {
-    navigate(`/events/${id}`);
-  };
-
   const toggleFavorite = (e) => {
-    e.stopPropagation(); // prevent card navigation
+    e.preventDefault();
+    e.stopPropagation();
 
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     let updatedFavorites;
@@ -31,33 +27,46 @@ export default function EventCard({ id, title, location, date, price, image }) {
   };
 
   return (
-    <div
-      onClick={goToDetails}
-      className="cursor-pointer relative bg-white rounded-lg border shadow p-4 hover:shadow-xl transition hover:-translate-y-1"
+    <Link
+      to={`/events/${id}`}
+      className="group relative bg-white rounded-2xl border shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
     >
-      <div className="w-full h-44 sm:h-48 overflow-hidden rounded-md">
+      {/* Image */}
+      <div className="relative h-44 sm:h-48 overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-      </div>
 
-      <h2 className="text-xl font-bold mt-3">{title}</h2>
-      <p className="text-gray-600">{location}</p>
-      <p className="text-gray-500">{date}</p>
-
-      <div className="mt-2 flex justify-between items-center">
-        <p className="font-semibold text-blue-600">GHS {price}</p>
-
+        {/* Favorite Button */}
         <button
           onClick={toggleFavorite}
-          className="text-xl transform transition-transform duration-200 hover:scale-125"
-          aria-label="Toggle favorite"
+          className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full p-3 text-xl hover:scale-110 transition"
         >
           {isFavorite ? "❤️" : "🤍"}
         </button>
       </div>
-    </div>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col gap-2">
+        <h2 className="text-lg font-semibold leading-tight line-clamp-2">
+          {title}
+        </h2>
+
+        <p className="text-sm text-gray-500">{location}</p>
+        <p className="text-sm text-gray-400">{date}</p>
+
+        <div className="mt-3 flex items-center justify-between">
+          <span className="text-blue-600 font-bold text-lg">
+            GHS {price}
+          </span>
+
+          <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition">
+            View details →
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }

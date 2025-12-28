@@ -2,22 +2,25 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-28">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-          Discover Events That Matter
+    <section className="bg-gradient-to-br from-blue-600 to-blue-700 text-white">
+      <div className="max-w-6xl mx-auto px-6 py-20 md:py-28 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+          Discover & Book <br className="hidden md:block" />
+          Amazing Events
         </h1>
 
-        <p className="mt-6 text-lg md:text-xl text-blue-100">
-          Concerts, conferences, workshops, and experiences across Ghana.
+        <p className="mt-6 text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
+          Concerts, conferences, sports, and live experiences — all in one place.
         </p>
 
-        <Link
-          to="/events"
-          className="inline-block mt-10 px-10 py-4 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-gray-100 transition"
-        >
-          Browse Events
-        </Link>
+        <div className="mt-10 flex justify-center">
+          <Link
+            to="/events"
+            className="inline-flex items-center justify-center px-10 py-4 bg-white text-blue-600 font-semibold rounded-xl shadow-lg hover:bg-gray-100 hover:scale-[1.02] transition-all"
+          >
+            Browse Events
+          </Link>
+        </div>
       </div>
     </section>
   );

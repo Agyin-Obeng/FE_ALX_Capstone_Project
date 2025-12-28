@@ -9,7 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CheckoutHistoryPage from "./pages/CheckoutHistoryPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import CheckoutHistoryPage from "./pages/CheckoutHistoryPage";
+
 
 
 

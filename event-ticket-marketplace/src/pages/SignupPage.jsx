@@ -8,7 +8,7 @@ export default function SignupPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4">
+    <div className="min-h-[70vh] flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow">
         <h1 className="text-3xl font-bold text-center mb-6">
           Create an Account
